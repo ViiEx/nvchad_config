@@ -1,75 +1,85 @@
-local overrides = require("custom.plugins.configs.overrides")
+local overrides = require "custom.plugins.configs.overrides"
 
 return {
 
-	----------------------------------------- default plugins ------------------------------------------
+  ----------------------------------------- default plugins ------------------------------------------
 
-	["folke/which-key.nvim"] = {
-		disable = false,
-	},
+  ["folke/which-key.nvim"] = {
+    disable = false,
+  },
 
-	["goolord/alpha-nvim"] = {
-		disable = false,
-		cmd = "Alpha",
-	},
+  ["goolord/alpha-nvim"] = {
+    disable = false,
+    cmd = "Alpha",
+  },
 
-	["neovim/nvim-lspconfig"] = {
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.plugins.configs.lspconfig")
-		end,
-	},
+  ["neovim/nvim-lspconfig"] = {
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.plugins.configs.lspconfig"
+    end,
+  },
 
-	-- override default configs
-	["kyazdani42/nvim-tree.lua"] = { override_options = overrides.nvimtree },
-	["nvim-treesitter/nvim-treesitter"] = { override_options = overrides.treesitter },
-	["lukas-reineke/indent-blankline.nvim"] = { override_options = overrides.blankline },
-	["williamboman/mason.nvim"] = { override_options = overrides.mason },
+  -- override default configs
+  ["kyazdani42/nvim-tree.lua"] = { override_options = overrides.nvimtree },
+  ["nvim-treesitter/nvim-treesitter"] = { override_options = overrides.treesitter },
+  ["lukas-reineke/indent-blankline.nvim"] = { override_options = overrides.blankline },
+  ["williamboman/mason.nvim"] = { override_options = overrides.mason },
 
-	--------------------------------------------- custom plugins ----------------------------------------------
+  -- disable defautls
+  ["NvChad/nvterm"] = { disable = true },
 
-	-- autoclose tags in html, jsx only
-	["windwp/nvim-ts-autotag"] = {
-		ft = { "html", "javascriptreact" },
-		after = "nvim-treesitter",
-		config = function()
-			local present, autotag = pcall(require, "nvim-ts-autotag")
+  --------------------------------------------- custom plugins ----------------------------------------------
 
-			if present then
-				autotag.setup()
-			end
-		end,
-	},
+  -- autoclose tags in html, jsx only
+  ["windwp/nvim-ts-autotag"] = {
+    ft = { "html", "javascriptreact" },
+    after = "nvim-treesitter",
+    config = function()
+      local present, autotag = pcall(require, "nvim-ts-autotag")
 
-	-- format & linting
-	["jose-elias-alvarez/null-ls.nvim"] = {
-		after = "nvim-lspconfig",
-		config = function()
-			require("custom.plugins.configs.null-ls")
-		end,
-	},
+      if present then
+        autotag.setup()
+      end
+    end,
+  },
 
-	-- get highlight group under cursor
-	["nvim-treesitter/playground"] = {
-		cmd = "TSCaptureUnderCursor",
-		config = function()
-			require("nvim-treesitter.configs").setup()
-		end,
-	},
+  -- format & linting
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require "custom.plugins.configs.null-ls"
+    end,
+  },
 
-	-- dim inactive windows
-	["andreadev-it/shade.nvim"] = {
-		opt = true,
-		config = function()
-			require("custom.plugins.configs.shade")
-		end,
-	},
+  -- get highlight group under cursor
+  ["nvim-treesitter/playground"] = {
+    cmd = "TSCaptureUnderCursor",
+    config = function()
+      require("nvim-treesitter.configs").setup()
+    end,
+  },
 
-	["RishabhRD/lspactions"] = {
-		requires = { "nvim-lua/popup.nvim" },
-	},
+  -- dim inactive windows
+  ["andreadev-it/shade.nvim"] = {
+    opt = true,
+    config = function()
+      require "custom.plugins.configs.shade"
+    end,
+  },
 
-	["nvim-telescope/telescope-symbols.nvim"] = {},
+  ["RishabhRD/lspactions"] = {
+    requires = { "nvim-lua/popup.nvim" },
+  },
 
-	["kdheepak/lazygit.nvim"] = {},
+  ["nvim-telescope/telescope-symbols.nvim"] = {},
+
+  ["kdheepak/lazygit.nvim"] = {},
+
+  ["akinsho/toggleterm.nvim"] = {
+    tag = "*",
+    config = function()
+      require "custom.plugins.configs.toggleterm"
+    end,
+  },
 }
