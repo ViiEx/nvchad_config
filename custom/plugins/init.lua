@@ -87,4 +87,16 @@ return {
 			require("custom.plugins.configs.fidget")
 		end,
 	},
+	-- Debugging
+	["mfussenegger/nvim-dap"] = {
+		config = function()
+			require("custom.plugins.configs.dap_conf")
+		end,
+	},
+	["rcarriga/nvim-dap-ui"] = {
+		config = function()
+			require("custom.plugins.configs.dap-ui")
+		end,
+	},
+	["jbyuki/one-small-step-for-vimkind"] = {},
 }
