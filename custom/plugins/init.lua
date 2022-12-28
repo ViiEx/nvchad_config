@@ -29,6 +29,12 @@ return {
 	-- disable defautls
 	["NvChad/nvterm"] = { disable = true },
 
+	["hrsh7th/nvim-cmp"] = {
+		config = function()
+			require("custom.plugins.configs.cmp")
+		end,
+	},
+
 	--------------------------------------------- custom plugins ----------------------------------------------
 
 	-- autoclose tags in html, jsx only
