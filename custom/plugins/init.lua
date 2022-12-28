@@ -105,4 +105,6 @@ return {
 	},
 
 	["jose-elias-alvarez/typescript.nvim"] = {},
+
+	["github/copilot.vim"] = {},
 }
