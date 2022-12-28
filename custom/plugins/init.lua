@@ -103,4 +103,6 @@ return {
 	["kkoomen/vim-doge"] = {
 		run = ":call doge#install()",
 	},
+
+	["jose-elias-alvarez/typescript.nvim"] = {},
 }

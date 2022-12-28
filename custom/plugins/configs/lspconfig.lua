@@ -1,13 +1,15 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 
-local servers = { "html", "cssls", "clangd", "jsonls", 'tailwindcss' , 'bashls', "emmet_ls", "phpactor" }
+local servers = { "html", "cssls", "clangd", "jsonls", "tailwindcss", "bashls", "emmet_ls", "phpactor" }
 
-lspconfig.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+require("typescript").setup({
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
 })
 
 lspconfig.intelephense.setup({
@@ -63,8 +65,8 @@ lspconfig.sumneko_lua.setup({
 })
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 end
