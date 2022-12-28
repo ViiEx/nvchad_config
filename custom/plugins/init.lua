@@ -99,4 +99,8 @@ return {
 		end,
 	},
 	["jbyuki/one-small-step-for-vimkind"] = {},
+
+	["kkoomen/vim-doge"] = {
+		run = ":call doge#install()",
+	},
 }
